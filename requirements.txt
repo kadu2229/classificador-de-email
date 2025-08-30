@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pypdf
+pdf2image
+pillow
+pytesseract
+nltk
+scikit-learn
+numpy

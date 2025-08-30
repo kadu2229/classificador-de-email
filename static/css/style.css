@@ -1,0 +1,80 @@
+/* Reset e fundo */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Lanternas */
+.lantern {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,200,100,0.8), rgba(255,100,0,0.4));
+    filter: blur(8px);
+    opacity: 0.7;
+    pointer-events: none;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+    50% { transform: translateY(-300px) rotate(45deg); opacity: 0.9; }
+    100% { transform: translateY(-600px) rotate(90deg); opacity: 0; }
+}
+
+/* Conteúdo principal */
+.wrap { max-width: 900px; margin: 40px auto; padding: 0 16px; position: relative; z-index: 10; }
+header { text-align: center; margin-bottom: 24px; }
+h1 { font-size: clamp(22px, 4vw, 32px); margin: 0 0 8px; }
+p.sub { color: #94a3b8; margin: 0; }
+
+.card {
+    background: rgba(17,24,39,.9);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px;
+    padding: 18px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    margin-bottom: 16px;
+}
+
+.flex-container { display: flex; flex-direction: column; gap: 16px; }
+@media (min-width: 880px) { 
+    .flex-container { flex-direction: row; } 
+    .flex-item { flex: 1; } 
+}
+
+textarea {
+    width: 100%;
+    min-height: 160px;
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+
+.btn {
+    cursor: pointer;
+    background: #22d3ee;
+    color: #001018;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.result-card h2 { margin-top: 0; }
+
+.result { margin-top: 16px; font-size: 16px; line-height: 1.4; }
+
+.small { font-size: 12px; color: #94a3b8; margin-top: 8px; }
