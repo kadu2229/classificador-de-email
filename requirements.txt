@@ -1,9 +1,10 @@
 fastapi
-uvicorn[standard]
-pypdf
+uvicorn
+pydantic
+scikit-learn
+nltk
+pytesseract
 pdf2image
 pillow
-pytesseract
-nltk
-scikit-learn
-numpy
+pypdf
+python-multipart
