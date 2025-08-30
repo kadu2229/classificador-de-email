@@ -29,4 +29,24 @@ static/
 │ └─ style.css # CSS do front-end
 ├─ index.html # HTML do front-end
 
+## ⚡ Tecnologias
+
+- **Python 3.12**
+- **FastAPI** (web framework)
+- **Uvicorn** (ASGI server)
+- **NLTK** e **Scikit-learn** (processamento de linguagem e classificação)
+- **Pillow / pytesseract** (OCR em imagens)
+- **pypdf / pdf2image** (leitura de PDFs)
+- **HTML / CSS / JavaScript** (front-end)
+
+---
+
+## 🚀 Rodando localmente
+
+1. Clone o repositório:
+
+```bash
+git clone <REPO_URL>
+cd <PASTA_DO_PROJETO>/backend
+
 
