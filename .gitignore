@@ -1,16 +1,13 @@
-# Ambientes virtuais
 venv/
 .env/
 .venv/
 
-# Arquivos de sistema
 __pycache__/
 *.py[cod]
 *.so
 *.log
 *.sqlite3
 
-# Cache e pacotes
 *.egg-info/
 *.egg
 *.pkl
@@ -18,7 +15,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Arquivos grandes temporários
 *.pdf
 *.png
 *.jpg
@@ -31,18 +27,15 @@ Thumbs.db
 *.mov
 *.mkv
 
-# Saídas de testes e builds
 dist/
 build/
 *.out
 *.exe
 
-# Configurações locais
 .idea/
 .vscode/
 *.swp
 
-# Modelos treinados grandes (se houver)
 *.model
 *.bin
 *.h5
