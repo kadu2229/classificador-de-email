@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classificador de Emails</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Classificador de Emails</h1>
+      <p class="sub">Digite sua mensagem ou envie um arquivo (.txt, .pdf ou imagem)</p>
+    </header>
+
+    <div class="flex-container">
+      <!-- Área de texto -->
+      <div class="card flex-item">
+        <textarea id="emailText" placeholder="Digite sua mensagem aqui..."></textarea>
+        <div class="row">
+          <button class="btn" id="processBtn">Processar</button>
+          <input type="file" id="fileInput" accept=".txt,.pdf,image/*">
+        </div>
+        <p class="small">Suporta textos, PDFs com texto ou imagens.</p>
+      </div>
+
+      <!-- Resultado -->
+      <div class="card flex-item" id="resultCard">
+        <p class="result" id="resultText">O resultado aparecerá aqui...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const processBtn = document.getElementById('processBtn');
+    const emailText = document.getElementById('emailText');
+    const fileInput = document.getElementById('fileInput');
+    const resultText = document.getElementById('resultText');
+
+    processBtn.addEventListener('click', async () => {
+      const textValue = emailText.value.trim();
+
+      // Validação: pelo menos 2 palavras
+      const wordCount = textValue.split(/\s+/).filter(w => w.length > 0).length;
+      if (!textValue && fileInput.files.length === 0) {
+        alert("Digite pelo menos 2 palavras ou envie um arquivo.");
+        return;
+      }
+      if (textValue && wordCount < 2) {
+        alert("Digite pelo menos 2 palavras.");
+        return;
+      }
+
+      let formData = new FormData();
+      if (fileInput.files.length > 0) {
+        formData.append("file", fileInput.files[0]);
+      } else {
+        formData.append("email_text", textValue);
+      }
+
+      try {
+        const endpoint = fileInput.files.length > 0 ? '/upload' : '/process';
+        const res = await fetch(endpoint, { method: 'POST', body: formData });
+        const data = await res.json();
+        resultText.innerHTML = `
+      <strong>Categoria:</strong> ${data.categoria} <br>
+      <strong>Confiança:</strong> ${data.confianca} <br>
+      <strong>Subtipo:</strong> ${data.subtipo} <br>
+      <strong>Resposta:</strong> ${data.resposta}
+    `;
+        // Limpar textarea e input de arquivo
+        emailText.value = '';
+        fileInput.value = '';
+      } catch (err) {
+        resultText.textContent = "Erro ao processar a mensagem.";
+        console.error(err);
+      }
+    });
+
+
+
+    const lanternCount = 20; // número de lanternas
+    for (let i = 0; i < lanternCount; i++) {
+      const lantern = document.createElement("div");
+      lantern.classList.add("lantern");
+
+      lantern.style.left = Math.random() * 100 + "%"; // posição horizontal aleatória
+      lantern.style.width = 20 + Math.random() * 40 + "px"; // largura aleatória
+      lantern.style.height = lantern.style.width; // manter proporção
+      lantern.style.animationDuration = (15 + Math.random() * 10) + "s"; // velocidade aleatória
+
+      document.body.appendChild(lantern);
+    }
+  </script>
+</body>
+
+</html>
