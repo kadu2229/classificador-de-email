@@ -95,7 +95,13 @@ X = VECT.fit_transform(X_text)
 CLS = LogisticRegression(max_iter=1000)
 CLS.fit(X, y)
 
-def classify_email(text: str) -> Tuple[str, float]:
+KEYWORDS_IMPRODUTIVO = ["obrigado", "parabéns", "bom dia", "boa tarde", "boa noite", "feliz", "ótimo", "valeu"]
+
+def classify_email_safe(text: str) -> Tuple[str, float]:
+    lower = text.lower()
+    for kw in KEYWORDS_IMPRODUTIVO:
+        if kw in lower:
+            return "Improdutivo", 0.99
     if not text or not text.strip():
         return "Improdutivo", 0.0
     Xq = VECT.transform([text])
@@ -187,7 +193,7 @@ def health():
 
 @app.post("/process")
 async def process_email(email_text: str = Form(...)):
-    categoria, conf = classify_email(email_text)
+    categoria, conf = classify_email_safe(email_text)
     subtipo = detect_subtype(email_text, categoria)
     resposta = generate_reply(email_text, categoria, subtipo)
     return {
@@ -202,7 +208,7 @@ async def upload_email(file: UploadFile = File(...)):
     text = read_text_from_upload(file)
     if not text:
         raise HTTPException(status_code=400, detail="Não foi possível extrair texto do arquivo.")
-    categoria, conf = classify_email(text)
+    categoria, conf = classify_email_safe(text)
     subtipo = detect_subtype(text, categoria)
     resposta = generate_reply(text, categoria, subtipo)
     return {
