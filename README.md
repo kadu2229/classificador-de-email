@@ -46,7 +46,7 @@ static/
 1. Clone o repositório:
 
 ```bash
-git clone <REPO_URL>
+git clone <(https://github.com/kadu2229/classificador-de-email)>
 cd <PASTA_DO_PROJETO>/backend
 
 
