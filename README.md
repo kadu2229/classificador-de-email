@@ -19,16 +19,6 @@ Um projeto demo de classificação de emails usando FastAPI e aprendizado de má
 
 ---
 
-## 📂 Estrutura do Projeto
-
-backend/
-├─ app.py # Código principal do FastAPI
-├─ requirements.txt # Dependências Python
-static/
-├─ css/
-│ └─ style.css # CSS do front-end
-├─ index.html # HTML do front-end
-
 ## ⚡ Tecnologias
 
 - **Python 3.12**
